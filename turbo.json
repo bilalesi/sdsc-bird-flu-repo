@@ -10,6 +10,9 @@
         "TURSO_CONNECTION_URL",
         "TURSO_AUTH_TOKEN"
       ]
+    }, 
+    "start": {
+      "dependsOn": ["^build"]
     },
     "dev": {
       "cache": false,
