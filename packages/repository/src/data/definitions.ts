@@ -1,13 +1,13 @@
-import { FluType } from "@/models/types"
+import { FluType } from "@/models/types";
 
 // NOTE: This chat gpt definitions :)
 export const FLU_DEFINITIONS: Array<{
-  name: FluType
+  name: FluType;
   details: {
-    Subtype: string
-    Significance: string
-    "Notable Outbreaks": string
-  }
+    Subtype: string;
+    Significance: string;
+    "Notable Outbreaks": string;
+  };
 }> = [
   {
     name: "h5n1",
@@ -51,4 +51,4 @@ export const FLU_DEFINITIONS: Array<{
         "An outbreak in Indiana in 2016 affected commercial turkey farms.",
     },
   },
-]
+];

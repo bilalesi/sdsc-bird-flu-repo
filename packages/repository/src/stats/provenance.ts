@@ -1,7 +1,7 @@
-import { eq, and, count, gte, lte } from "drizzle-orm"
-import { db } from "@/drizzle/client"
-import { FluType } from "@/models/types"
-import { birdFluCases } from "@/models/schema"
+import { eq, and, count, gte, lte } from "drizzle-orm";
+import { db } from "@/drizzle/client";
+import { FluType } from "@/models/types";
+import { birdFluCases } from "@/models/schema";
 
 export default async function getGroupedBirdFluCasesByProvenance({
   startDate,
@@ -9,31 +9,31 @@ export default async function getGroupedBirdFluCasesByProvenance({
   fluType,
   bird,
 }: {
-  startDate?: string
-  endDate?: string
-  fluType?: FluType
-  bird?: string
+  startDate?: string;
+  endDate?: string;
+  fluType?: FluType;
+  bird?: string;
 }) {
-  const whereConditions: any[] = []
+  const whereConditions: any[] = [];
 
   if (startDate && endDate) {
     whereConditions.push(
       and(
         gte(birdFluCases.timestamp, startDate),
-        lte(birdFluCases.timestamp, endDate)
-      )
-    )
+        lte(birdFluCases.timestamp, endDate),
+      ),
+    );
   } else if (startDate) {
-    whereConditions.push(gte(birdFluCases.timestamp, startDate))
+    whereConditions.push(gte(birdFluCases.timestamp, startDate));
   } else if (endDate) {
-    whereConditions.push(lte(birdFluCases.timestamp, endDate))
+    whereConditions.push(lte(birdFluCases.timestamp, endDate));
   }
 
   if (fluType) {
-    whereConditions.push(eq(birdFluCases[fluType], 1))
+    whereConditions.push(eq(birdFluCases[fluType], 1));
   }
   if (bird) {
-    whereConditions.push(eq(birdFluCases.species, bird))
+    whereConditions.push(eq(birdFluCases.species, bird));
   }
 
   const results = await db
@@ -43,7 +43,7 @@ export default async function getGroupedBirdFluCasesByProvenance({
     })
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)
-    .groupBy(birdFluCases.provenance)
+    .groupBy(birdFluCases.provenance);
 
-  return results
+  return results;
 }

@@ -1,7 +1,7 @@
-import { eq, and, count, gte, lte } from "drizzle-orm"
-import { db } from "@/drizzle/client"
-import { birdFluCases } from "@/models/schema"
-import type { FluType, Provenance } from "@/models/types"
+import { eq, and, count, gte, lte } from "drizzle-orm";
+import { db } from "@/drizzle/client";
+import { birdFluCases } from "@/models/schema";
+import type { FluType, Provenance } from "@/models/types";
 
 export default async function getGroupedBirdBySpecies({
   startDate,
@@ -9,32 +9,32 @@ export default async function getGroupedBirdBySpecies({
   fluType,
   provenance,
 }: {
-  startDate?: string
-  endDate?: string
-  fluType?: FluType
-  provenance: Provenance
+  startDate?: string;
+  endDate?: string;
+  fluType?: FluType;
+  provenance: Provenance;
 }) {
-  const whereConditions: any[] = []
+  const whereConditions: any[] = [];
 
   if (startDate && endDate) {
     whereConditions.push(
       and(
         gte(birdFluCases.timestamp, startDate),
-        lte(birdFluCases.timestamp, endDate)
-      )
-    )
+        lte(birdFluCases.timestamp, endDate),
+      ),
+    );
   } else if (startDate) {
-    whereConditions.push(gte(birdFluCases.timestamp, startDate))
+    whereConditions.push(gte(birdFluCases.timestamp, startDate));
   } else if (endDate) {
-    whereConditions.push(lte(birdFluCases.timestamp, endDate))
+    whereConditions.push(lte(birdFluCases.timestamp, endDate));
   }
 
   if (fluType) {
-    whereConditions.push(eq(birdFluCases[fluType], 1))
+    whereConditions.push(eq(birdFluCases[fluType], 1));
   }
 
   if (provenance) {
-    whereConditions.push(eq(birdFluCases.provenance, provenance))
+    whereConditions.push(eq(birdFluCases.provenance, provenance));
   }
 
   const results = await db
@@ -44,7 +44,7 @@ export default async function getGroupedBirdBySpecies({
     })
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)
-    .groupBy(birdFluCases.species)
+    .groupBy(birdFluCases.species);
 
-  return results
+  return results;
 }

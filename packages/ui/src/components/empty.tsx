@@ -1,4 +1,4 @@
-import { NotepadTextDashed } from "lucide-react"
+import { NotepadTextDashed } from "lucide-react";
 
 export default function Empty() {
   return (
@@ -6,5 +6,5 @@ export default function Empty() {
       <NotepadTextDashed />
       <div>No data</div>
     </div>
-  )
+  );
 }

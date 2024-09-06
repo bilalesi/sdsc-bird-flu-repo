@@ -1,24 +1,24 @@
-import * as fs from "fs"
-import * as path from "path"
-import chunk from "lodash/chunk"
-import { parse } from "csv-parse"
-import { db } from "@/drizzle/client"
+import * as fs from "fs";
+import * as path from "path";
+import chunk from "lodash/chunk";
+import { parse } from "csv-parse";
+import { db } from "@/drizzle/client";
 
-import { birdFluCases } from "@/models/schema"
+import { birdFluCases } from "@/models/schema";
 
 const seed = async () => {
-  const transformedData: Array<any> = []
+  const transformedData: Array<any> = [];
   const parser = fs
     .createReadStream(
-      path.join(__dirname, "../data/fake_bird_data_switzerland_v2.csv")
+      path.join(__dirname, "../data/fake_bird_data_switzerland_v2.csv"),
     )
     .pipe(
       parse({
         columns: true,
         skipEmptyLines: true,
         delimiter: ",",
-      })
-    )
+      }),
+    );
   for await (const row of parser) {
     transformedData.push({
       latitude: parseFloat(row.latitude),
@@ -30,13 +30,13 @@ const seed = async () => {
       h7n8: row.H7N8 ? parseFloat(row.H7N8) : null,
       timestamp: row.timestamp,
       provenance: row.provenance,
-    })
+    });
   }
 
   for (const ck of chunk(transformedData, 100)) {
-    await db.insert(birdFluCases).values(ck)
+    await db.insert(birdFluCases).values(ck);
   }
-}
+};
 
 // Call the function to insert data
-seed()
+seed();

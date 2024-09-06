@@ -1,13 +1,13 @@
-import NextLink, { LinkProps as NextLinkProps } from "next/link"
-import { ComponentProps } from "react"
-import { cx } from "class-variance-authority"
-import { ExternalLinkIcon } from "lucide-react"
+import NextLink, { LinkProps as NextLinkProps } from "next/link";
+import { ComponentProps } from "react";
+import { cx } from "class-variance-authority";
+import { ExternalLinkIcon } from "lucide-react";
 
 export type LinkProps = NextLinkProps &
   ComponentProps<"a"> & {
-    children: React.ReactNode
-    icon?: true
-  }
+    children: React.ReactNode;
+    icon?: true;
+  };
 
 export const Link: React.FC<LinkProps> = ({
   href,
@@ -24,7 +24,7 @@ export const Link: React.FC<LinkProps> = ({
         "transition-all underline-offset-4",
         "hover:text-primary",
         icon && "group",
-        className
+        className,
       )}
       {...props}
     >
@@ -33,5 +33,5 @@ export const Link: React.FC<LinkProps> = ({
         <ExternalLinkIcon className="transition-all group-hover:translate-x-[2px] group-hover:-translate-y-[2px] ease-out" />
       )}
     </NextLink>
-  )
-}
+  );
+};

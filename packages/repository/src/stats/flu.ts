@@ -1,7 +1,7 @@
-import { eq, and, gte, lte, sum, sql } from "drizzle-orm"
-import { birdFluCases } from "@/models/schema"
-import { db } from "@/drizzle/client"
-import { Provenance } from "@/models/types"
+import { eq, and, gte, lte, sum, sql } from "drizzle-orm";
+import { birdFluCases } from "@/models/schema";
+import { db } from "@/drizzle/client";
+import { Provenance } from "@/models/types";
 
 export default async function getGroupedBirdFluCasesByFluType({
   startDate,
@@ -9,32 +9,32 @@ export default async function getGroupedBirdFluCasesByFluType({
   provenance,
   bird,
 }: {
-  startDate?: string
-  endDate?: string
-  provenance?: Provenance
-  bird?: string
+  startDate?: string;
+  endDate?: string;
+  provenance?: Provenance;
+  bird?: string;
 }) {
-  const whereConditions: any[] = []
+  const whereConditions: any[] = [];
 
   if (startDate && endDate) {
     whereConditions.push(
       and(
         gte(birdFluCases.timestamp, startDate),
-        lte(birdFluCases.timestamp, endDate)
-      )
-    )
+        lte(birdFluCases.timestamp, endDate),
+      ),
+    );
   } else if (startDate) {
-    whereConditions.push(gte(birdFluCases.timestamp, startDate))
+    whereConditions.push(gte(birdFluCases.timestamp, startDate));
   } else if (endDate) {
-    whereConditions.push(lte(birdFluCases.timestamp, endDate))
+    whereConditions.push(lte(birdFluCases.timestamp, endDate));
   }
 
   if (provenance) {
-    whereConditions.push(eq(birdFluCases.provenance, provenance))
+    whereConditions.push(eq(birdFluCases.provenance, provenance));
   }
 
   if (bird) {
-    whereConditions.push(eq(birdFluCases.species, bird))
+    whereConditions.push(eq(birdFluCases.species, bird));
   }
 
   const results = await db
@@ -46,9 +46,9 @@ export default async function getGroupedBirdFluCasesByFluType({
     })
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)
-    .get()
+    .get();
 
-  return results
+  return results;
 }
 
 export async function getFluCountsPerMonth({
@@ -57,32 +57,32 @@ export async function getFluCountsPerMonth({
   provenance,
   bird,
 }: {
-  startDate?: string
-  endDate?: string
-  provenance?: Provenance
-  bird?: string
+  startDate?: string;
+  endDate?: string;
+  provenance?: Provenance;
+  bird?: string;
 }) {
-  const whereConditions: any[] = []
+  const whereConditions: any[] = [];
 
   if (startDate && endDate) {
     whereConditions.push(
       and(
         gte(birdFluCases.timestamp, startDate),
-        lte(birdFluCases.timestamp, endDate)
-      )
-    )
+        lte(birdFluCases.timestamp, endDate),
+      ),
+    );
   } else if (startDate) {
-    whereConditions.push(gte(birdFluCases.timestamp, startDate))
+    whereConditions.push(gte(birdFluCases.timestamp, startDate));
   } else if (endDate) {
-    whereConditions.push(lte(birdFluCases.timestamp, endDate))
+    whereConditions.push(lte(birdFluCases.timestamp, endDate));
   }
 
   if (provenance) {
-    whereConditions.push(eq(birdFluCases.provenance, provenance))
+    whereConditions.push(eq(birdFluCases.provenance, provenance));
   }
 
   if (bird) {
-    whereConditions.push(eq(birdFluCases.species, bird))
+    whereConditions.push(eq(birdFluCases.species, bird));
   }
 
   return db
@@ -97,5 +97,5 @@ export async function getFluCountsPerMonth({
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)
     .groupBy(sql`strftime('%Y-%m', ${birdFluCases.timestamp})`)
-    .orderBy(sql`strftime('%Y-%m', ${birdFluCases.timestamp})`)
+    .orderBy(sql`strftime('%Y-%m', ${birdFluCases.timestamp})`);
 }

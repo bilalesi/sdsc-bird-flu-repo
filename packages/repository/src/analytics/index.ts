@@ -1,1 +1,1 @@
-export { default as getAnalyticsTimeline } from "./timeline"
+export { default as getAnalyticsTimeline } from "./timeline";

@@ -4,10 +4,10 @@ export {
   getGroupedBirdBySpecies,
   getFluCountsPerMonth,
   getTotalData,
-} from "@/stats"
+} from "@/stats";
 
-export { getAnalyticsTimeline } from "@/analytics"
+export { getAnalyticsTimeline } from "@/analytics";
 
-export type { FluType, Provenance } from "@/models/types"
+export type { FluType, Provenance } from "@/models/types";
 
-export { FLU_DEFINITIONS } from "@/data/definitions"
+export { FLU_DEFINITIONS } from "@/data/definitions";

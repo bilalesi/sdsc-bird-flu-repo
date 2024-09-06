@@ -14,9 +14,9 @@
     "lint": "eslint . --max-warnings 0"
   },
   "devDependencies": {
-    "@sdsc/eslint-config": "workspace:*",
     "@sdsc/lib": "workspace:*",
-    "@sdsc/typescript-config": "workspace:*",
+    "eslint-config": "workspace:*",
+    "typescript-config": "workspace:*",
     "@turbo/gen": "^1.12.4",
     "@types/eslint": "^8.56.5",
     "@types/node": "^20.11.24",

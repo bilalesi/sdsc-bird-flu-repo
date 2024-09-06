@@ -1,8 +1,8 @@
-import { eq, and, count, gte, lte, sql } from "drizzle-orm"
-import { db } from "@/drizzle/client"
-import { birdFluCases } from "@/models/schema"
+import { eq, and, count, gte, lte, sql } from "drizzle-orm";
+import { db } from "@/drizzle/client";
+import { birdFluCases } from "@/models/schema";
 
-import type { FluType, Provenance } from "@/models/types"
+import type { FluType, Provenance } from "@/models/types";
 
 export default async function getAnalyticsTimeline({
   startDate,
@@ -11,37 +11,37 @@ export default async function getAnalyticsTimeline({
   provenance,
   bird,
 }: {
-  startDate?: string
-  endDate?: string
-  bird?: string
-  fluType?: FluType
-  provenance?: Provenance
+  startDate?: string;
+  endDate?: string;
+  bird?: string;
+  fluType?: FluType;
+  provenance?: Provenance;
 }) {
-  const whereConditions: any[] = []
+  const whereConditions: any[] = [];
 
   if (startDate && endDate) {
     whereConditions.push(
       and(
         gte(birdFluCases.timestamp, startDate),
-        lte(birdFluCases.timestamp, endDate)
-      )
-    )
+        lte(birdFluCases.timestamp, endDate),
+      ),
+    );
   } else if (startDate) {
-    whereConditions.push(gte(birdFluCases.timestamp, startDate))
+    whereConditions.push(gte(birdFluCases.timestamp, startDate));
   } else if (endDate) {
-    whereConditions.push(lte(birdFluCases.timestamp, endDate))
+    whereConditions.push(lte(birdFluCases.timestamp, endDate));
   }
 
   if (fluType) {
-    whereConditions.push(eq(birdFluCases[fluType], 1))
+    whereConditions.push(eq(birdFluCases[fluType], 1));
   }
 
   if (provenance) {
-    whereConditions.push(eq(birdFluCases.provenance, provenance))
+    whereConditions.push(eq(birdFluCases.provenance, provenance));
   }
 
   if (bird) {
-    whereConditions.push(eq(birdFluCases.species, bird))
+    whereConditions.push(eq(birdFluCases.species, bird));
   }
 
   const results = await db
@@ -57,8 +57,8 @@ export default async function getAnalyticsTimeline({
     .groupBy(
       sql`strftime('%Y-%m', ${birdFluCases.timestamp})`,
       birdFluCases.longitude,
-      birdFluCases.latitude
-    )
+      birdFluCases.latitude,
+    );
 
-  return results
+  return results;
 }

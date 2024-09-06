@@ -23,8 +23,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@sdsc/eslint-config": "workspace:*",
-    "@sdsc/typescript-config": "workspace:*",
+    "eslint-config": "workspace:*",
+    "typescript-config": "workspace:*",
     "drizzle-kit": "^0.24.2",
     "pkgroll": "^2.4.2"
   },

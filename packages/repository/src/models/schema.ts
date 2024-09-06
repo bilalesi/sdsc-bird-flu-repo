@@ -1,5 +1,5 @@
-import { sqliteTable, text, real } from "drizzle-orm/sqlite-core"
-import { createId } from "@paralleldrive/cuid2"
+import { sqliteTable, text, real } from "drizzle-orm/sqlite-core";
+import { createId } from "@paralleldrive/cuid2";
 
 export const birdFluCases = sqliteTable("bird_flu_cases", {
   id: text("id").primaryKey().$defaultFn(createId),
@@ -12,6 +12,6 @@ export const birdFluCases = sqliteTable("bird_flu_cases", {
   h7n8: real("h7n8"),
   timestamp: text("timestamp"),
   provenance: text("provenance").notNull(),
-})
+});
 
-export type BirdFluCase = typeof birdFluCases.$inferSelect
+export type BirdFluCase = typeof birdFluCases.$inferSelect;
