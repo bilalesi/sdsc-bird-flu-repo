@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.14.0",
-    "@sdsc/lib": "workspace:*",
-    "@sdsc/repository": "workspace:*",
-    "@sdsc/ui": "workspace:*",
+    "@sdsc/lib": "*",
+    "@sdsc/repository": "*",
+    "@sdsc/ui": "*",
     "leaflet": "^1.9.4",
     "leaflet-heatmap": "^1.0.0",
     "lucide-react": "^0.438.0",
@@ -24,8 +24,8 @@
     "sonner": "^1.5.0"
   },
   "devDependencies": {
-    "eslint-config": "workspace:*",
-    "typescript-config": "workspace:*",
+    "eslint-config": "*",
+    "typescript-config": "*",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
