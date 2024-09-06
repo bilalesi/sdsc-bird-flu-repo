@@ -1,5 +1,5 @@
 {
-  "name": "new",
+  "name": "sdsc",
   "private": true,
   "scripts": {
     "build": "turbo build",
