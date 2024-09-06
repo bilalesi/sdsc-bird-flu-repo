@@ -50,12 +50,12 @@ export default async function getAnalyticsTimeline({
       lng: birdFluCases.longitude,
       lat: birdFluCases.latitude,
       count: count(birdFluCases.id),
-      date: sql`strftime('%Y-%m', ${birdFluCases.timestamp})`,
+      date: sql<string>`strftime('%Y-%m', ${birdFluCases.timestamp})`,
     })
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)
     .groupBy(
-      sql`strftime('%Y-%m', ${birdFluCases.timestamp})`,
+      sql<string>`strftime('%Y-%m', ${birdFluCases.timestamp})`,
       birdFluCases.longitude,
       birdFluCases.latitude,
     );

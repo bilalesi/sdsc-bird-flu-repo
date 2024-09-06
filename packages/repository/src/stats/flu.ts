@@ -89,10 +89,10 @@ export async function getFluCountsPerMonth({
     .select({
       year: sql`strftime('%Y', ${birdFluCases.timestamp})`.as("year"),
       month: sql`strftime('%m', ${birdFluCases.timestamp})`.as("month"),
-      h5n1: sql`SUM(${birdFluCases.h5n1})`,
-      h5n2: sql`SUM(${birdFluCases.h5n2})`,
-      h7n2: sql`SUM(${birdFluCases.h7n2})`,
-      h7n8: sql`SUM(${birdFluCases.h7n8})`,
+      h5n1: sql<number>`SUM(${birdFluCases.h5n1})`,
+      h5n2: sql<number>`SUM(${birdFluCases.h5n2})`,
+      h7n2: sql<number>`SUM(${birdFluCases.h7n2})`,
+      h7n8: sql<number>`SUM(${birdFluCases.h7n8})`,
     })
     .from(birdFluCases)
     .where(whereConditions.length ? and(...whereConditions) : undefined)

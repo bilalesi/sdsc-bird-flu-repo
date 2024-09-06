@@ -31,10 +31,10 @@ export default async function FluPropagationChart({
         year: "2-digit",
       },
     ),
-    h5n1: Number(p.h5n1),
-    h5n2: Number(p.h5n2),
-    h7n2: Number(p.h7n2),
-    h7n8: Number(p.h7n8),
+    h5n1: p.h5n1,
+    h5n2: p.h5n2,
+    h7n2: p.h7n2,
+    h7n8: p.h7n8,
   }));
 
   const charConfig = ["h5n1", "h5n2", "h7n2", "h7n8"].reduce<
