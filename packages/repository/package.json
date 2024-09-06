@@ -1,0 +1,39 @@
+{
+  "name": "@sdsc/repository",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "dev": "pkgroll --watch",
+    "build": "pkgroll --clean-dist",
+    "studio": "drizzle-kit studio",
+    "seed": "tsx ./src/scripts/seed.ts",
+    "select": "tsx ./src/scripts/select.ts",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@sdsc/eslint-config": "workspace:*",
+    "@sdsc/typescript-config": "workspace:*",
+    "drizzle-kit": "^0.24.2",
+    "pkgroll": "^2.4.2"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.10.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "csv-parse": "^5.5.6",
+    "drizzle-orm": "^0.33.0",
+    "lodash": "^4.17.21",
+    "tsx": "^4.19.0"
+  }
+}

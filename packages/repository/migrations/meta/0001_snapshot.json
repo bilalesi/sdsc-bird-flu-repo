@@ -1,0 +1,101 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "994583dd-180a-4391-ada2-8276a2b552b0",
+  "prevId": "07ebd257-4099-4f9c-80e4-79fa053f165d",
+  "tables": {
+    "bird_flu_cases": {
+      "name": "bird_flu_cases",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "latitude": {
+          "name": "latitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "longitude": {
+          "name": "longitude",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "species": {
+          "name": "species",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "h5n1": {
+          "name": "h5n1",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "h5n2": {
+          "name": "h5n2",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "h7n2": {
+          "name": "h7n2",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "h7n8": {
+          "name": "h7n8",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "provenance": {
+          "name": "provenance",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {
+      "\"bird_flu_cases\".\"H5N1\"": "\"bird_flu_cases\".\"h5n1\"",
+      "\"bird_flu_cases\".\"H5N2\"": "\"bird_flu_cases\".\"h5n2\"",
+      "\"bird_flu_cases\".\"H7N2\"": "\"bird_flu_cases\".\"h7n2\"",
+      "\"bird_flu_cases\".\"H7N8\"": "\"bird_flu_cases\".\"h7n8\""
+    }
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
