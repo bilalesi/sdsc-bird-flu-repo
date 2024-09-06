@@ -1,0 +1,18 @@
+{
+    "style": "default",
+    "tailwind": {
+      "config": "./tailwind.config.js",
+      "css": "./globals.css",
+      "baseColor": "zinc",
+      "cssVariables": true
+    },
+    "rsc": true,
+    "tsx": true,
+    "aliases": {
+      "utils": "@sdsc/lib/clsx",
+      "components": "@sdsc/ui/components",
+      "ui": "@sdsc/ui/components",
+      "hooks": "@sdsc/ui/hooks"
+    }
+  }
+  
