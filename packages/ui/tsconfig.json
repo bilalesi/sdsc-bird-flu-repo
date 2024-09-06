@@ -4,7 +4,8 @@
     "outDir": "dist",
     "baseUrl": ".",
     "paths": {
-      "@sdsc/ui/*": ["./src/*"]
+      "@sdsc/ui/*": ["./src/*"],
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"],
