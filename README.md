@@ -1,81 +1,102 @@
-# Turborepo starter
+# **Bird flu control system**
 
-This is an official starter Turborepo.
+This is the main monorepo codebase:  Link to Webiste :  [SDSC-BF-CS](https://sdsc-bird-flu-cs.vercel.app/).
 
-## Using this example
+## What is Bird flu CS?
 
-Run the following command:
+<img align="right" height="520px" src="./mock-wareframes.jpeg" />
+This control dashboard integrates diverse open data into a user-friendly interface, allowing stakeholders to easily visualize and analyze bird flu. Designed with FAIR and ORD principles, it ensures that complex geospatial data and domain data is accessible and actionable for informed decision-making.
+
+This is the first wareframe for the app
+
+### Codebase
+
+#### **Technical Overview**
+
+The app is structured as a  **monorepo** , leveraging some pre-defined packages for linting and TypeScript configuration, managed through  **Turborepo** . These configurations were adjusted as necessary to meet the project’s needs.
+
+The provided data was integrated into a **SQLite3 database** hosted on  **Turso** , allowing for efficient querying and interaction with the dataset.
+
+Since the app is built with  **Next.js** , I opted not to implement a separate backend service. **Server components** and **API routes** (with one endpoint use case) were sufficient for this application. However, as the app scales for maintainability and extensibility, a dedicated **REST** or **GraphQL service** could be introduced.
+
+I use **Bunjs** as package manager and Nextjs to power the frontend and backend (which just one entrypoint) apps. All of the code you'll touch in this codebase will be Typescript/JavaScript.
+
+#### Technologies
+
+Here is a list of all the big technologies I use:
+
+- **Sqlite**: Data storage (deployed in **Turso).**
+- ****DrizzleOrm**: ORM for data access.**
+- ****Typescript**: Type-safe JavaScript.**
+- ****Nextjs**: Fullstack react app.**
+- ****Tailwindcss**: HTML styling.**
+
+#### Folder structure
+
+The app is using monorepo architecture managed by [Turborepo](https://turbo.build/repo/docs) with following structure
 
 ```sh
-npx create-turbo@latest
+www/
+├── apps
+    ├── web       # web application powered by react
+        ├── app   # all page using file-system routing system
+	   ├── api   # one entrypoint to get the flu spreading timeline
+├── packages
+    ├── ui        # package for gathering all atoms components
+	├── NOTE: the components are a mix between shadcn and custom components
+    ├── repository    # Data access layer (all db queries are assembled here)
 ```
 
-## What's inside?
+### First time setup
 
-This Turborepo includes the following packages/apps:
+The first step to running vision-app (my first name to the app :)) locally is downloading the code by cloning the repository:
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```sh
+git clone https://github.com/bilalesi/sdsc-bird-flu-repo
 ```
 
-### Develop
+#### Installation
 
-To develop all apps and packages, run the following command:
+1. **Get DB credentials**: Send by email, please put them in `.env` file in the `apps/web` application
+2. **Install bun**: I use [bun](https://bun.sh/) to handle our JavaScript dependencies, and monoropo
+3. **Install dependencies:** run the command in the top level folder of the app
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```sh
+bun install
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+You've now finished installing everything!
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+#### Getting the secrets
+
+Please reach out to me by email if I forget to send them already.
+
+Now you're ready to run the app locally and sign into your local instance!
+
+### Running the app locally
+
+#### Start the app
+
+The app do not need any magic to start just use this command in the top level folder of the app as always
 
 ```
-npx turbo link
+bun run dev
 ```
 
-## Useful Links
+### How I build the application
 
-Learn more about the power of Turborepo:
+The application was designed with politicians in mind, prioritizing a clean and simple interface that highlights the most relevant information for decision-making. To achieve this:
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+1. **Overview Page** : This page displays key statistics at a glance, providing users with an immediate understanding of the situation over a specific time period. Additionally, an interactive graph is included, allowing users to filter data by:
+   * Flu type.
+   * Provenance.
+   * Bird species.
+2. **Analytics Page** : This page visualizes the virus spread on a map, helping politicians make informed decisions based on geographic data. It highlights how quickly the virus is spreading and identifies periods of increase or decline.
+3. **Reports Page**: Intended for PDF report, downloading specific data - future work :)
+4. The app also provide a nice entry point from the home page to login page (without real authentication). **#JUST HIT (SIGN IN WITH EMAIL) to ACCESS THE  APP**
+5. The app also has other functionlities as (searchbar, account menu), but not yet implemented due time restriction.
+6. The analytics page miss some responsivness and some nice touch when change filters, need some imporvements in futur work to add graph and timeline as the heatmap change.
+
+### **Test Experience**
+
+Building the dashboard was an intersting challenge, with a focus on meeting specific client requirements. The test took approximately 8 to 9.5 hours to complete, excluding documentation and deployment time (Plus for quick access to result).

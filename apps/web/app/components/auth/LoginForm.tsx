@@ -45,7 +45,10 @@ export default function UserAuthForm({
           </div>
           <Link
             href="/overview"
-            className={cn(buttonVariants({ variant: "default" }))}
+            className={cn(
+              "hover:text-white",
+              buttonVariants({ variant: "default" })
+            )}
           >
             {isLoading && <Loader2Icon className="mr-2 h-4 w-4 animate-spin" />}
             Sign In with Email

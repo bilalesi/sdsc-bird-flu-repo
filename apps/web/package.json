@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.14.0",
-    "@sdsc/lib": "workspace:*",
-    "@sdsc/repository": "workspace:*",
-    "@sdsc/ui": "workspace:*",
+    "@sdsc/lib": "*",
+    "@sdsc/repository": "*",
+    "@sdsc/ui": "*",
     "leaflet": "^1.9.4",
     "leaflet-heatmap": "^1.0.0",
     "lucide-react": "^0.438.0",
